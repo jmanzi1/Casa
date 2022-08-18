@@ -4,6 +4,10 @@ const express = require("express");
 const casa = express();
 casa.use(express.json());
 
+app.use(cors({
+  origin: '*'
+}));
+
 const movies = [{
     id: 1,
     name: "La Casa De Papel",
