@@ -1,10 +1,11 @@
 const Joi = require (`joi`);
 const {response} = require("express");
 const express = require("express");
+const cors = require("cors");
 const casa = express();
 casa.use(express.json());
 
-app.use(cors());
+casa.use(cors());
 
 const movies = [{
     id: 1,
