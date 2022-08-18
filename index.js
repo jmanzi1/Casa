@@ -95,7 +95,7 @@ const movies = [{
     watched: 299,
   }
 ];
-const port = process.env.PORT||3000; 
+const port = process.env.PORT||9009; 
 casa.listen(
     port,
     ()=> console.log(`Welcome to La Casa on http://localhost:/${port}`)
@@ -106,18 +106,57 @@ casa.get('/api/movies',(request,response)=>{
 casa.get('/',(request,response)=>{
     response.send('Welcome');
 })
-// app.get('/api/courses',(request,response)=>{                //http://localhost:8080/api/courses
-//     response.send(courses);
-// })
-// app.post('/api/courses', (request, response) =>{            //postman
-//     const { error } = validateCourse(request.body);
 
-//     if( error )return response.status(400).send(result.error.details[0].message);
-       
-//     const course ={
-//             id: courses.length +1,
-//             name: request.body.name     
-//     }
-//     courses.push(course);
-//     response.send(courses);
-// })
+casa.get('/api/movies',(request,response)=>{
+  // id, name, creator, and genre.
+  const { id, name, creator, genre } = request.query;
+  console.log('id', id);
+  const searchedMovies = movies.filter((movie ) => movie.id === parseInt(id) || movie.name === name|| movie.creator===creator || movie.genre ===genre);
+  response.send(searchedMovies);
+});
+
+casa.put('/api/movies/ratings',(request,response)=>{
+  const{id, ratings} = request.query;
+
+  if(!Number.isInteger(parseInt(id))){
+    return response.status(400).send({
+      status: 400,
+      message: "ID SHOULD BE AN INTEGER"
+    });
+  }
+  if(isNaN(ratings)){
+    return response.status(400).send({
+      status: 400,
+      message: "RATING SHOULD BE A NUMBER"
+    })
+  }
+  if(!+ratings>=0){
+    return response.status(400).send({
+      status: 400,
+      message: "RATING SHOULD BE A POSITIVE NUMBER"
+    });
+  }
+  console.log('id',id);
+  let selectedMovie=movies.find(ratings=>ratings.id==parseInt(id));
+
+  // get index of the movie with the id from the req.query
+  const index = movies.indexOf(selectedMovie);
+  console.log('ratings',selectedMovie);
+  
+  let newRate=(selectedMovie.ratings+ parseInt(ratings))/2;
+  movies[index].ratings = newRate;
+  response.send(movies);
+})
+
+casa.put('/api/movies/watched',(request,response)=>{
+  const{id} = request.query;
+  
+  let numWatched = movies.find(watched=>watched.id == parseInt(id));
+
+  console.log('watched',numWatched);
+  const index = movies.indexOf(numWatched);
+  let newWatched = (numWatched.watched + 1);
+  movies[index].watched = newWatched;
+   response.status(200).send(movies);
+})
+
