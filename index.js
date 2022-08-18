@@ -4,9 +4,7 @@ const express = require("express");
 const casa = express();
 casa.use(express.json());
 
-app.use(cors({
-  origin: '*'
-}));
+app.use(cors());
 
 const movies = [{
     id: 1,
