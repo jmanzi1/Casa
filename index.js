@@ -71,7 +71,7 @@ const movies = [{
         profilePic: "https://google.com",
       },
     ],
-    Genre: "",
+    Genre: "Drama Series",
     yearProduced: "",
     composer: "hhdh",
     whereToWatch: [
