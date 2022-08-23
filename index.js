@@ -28,7 +28,10 @@ const movies = [{
     ],
     Genre: "",
     yearProduced: "",
-    composer: "hhdh",
+    composer: [
+      "Manel Santisteban;",
+      "Iván Martínez Lacámara",
+    ],
     whereToWatch: [
       {
         url: "",
