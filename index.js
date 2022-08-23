@@ -73,7 +73,12 @@ const movies = [{
     ],
     Genre: "Drama Series",
     yearProduced: "2014 (4 seasons)",
-    composer: "hhdh",
+    composer: [
+      {
+        comp1: "Manel Santisteban;"
+        comp2: "Iván Martínez Lacámara"
+      }
+    ],
     whereToWatch: [
       {
         url: "",
