@@ -97,7 +97,7 @@ const movies = [{
       },
       {
           user: "JonanMJ",
-          comment: "This is Awesome",
+          comment: "This is great!",
         },
     ],
     ratings: 1,
