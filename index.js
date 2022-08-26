@@ -166,6 +166,6 @@ casa.put('/api/movies/watched',(request,response)=>{
   const index = movies.indexOf(numWatched);
   let newWatched = (numWatched.watched + 1);
   movies[index].watched = newWatched;
-   response.status(200).send(movies);
+   response.status(200).send(movies[index]);
 })
 
