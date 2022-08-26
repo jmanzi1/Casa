@@ -49,7 +49,7 @@ const movies = [{
       },
       {
           user: "JonanMJ",
-          comment: "This is Awesome",
+          comment: "This is good",
         },
     ],
     ratings: 1,
