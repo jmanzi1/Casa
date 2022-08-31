@@ -109,6 +109,8 @@ casa.listen(
     port,
     ()=> console.log(`Welcome to La Casa on http://localhost:/${port}`)
 )
+
+casa.post()
 casa.get('/api/movies',(request,response)=>{
     response.send(movies);
 })
@@ -116,6 +118,11 @@ casa.get('/',(request,response)=>{
     response.send('Welcome');
 })
 
+casa.put("api/movies/comments", (request,response)=>{
+  const{id,comments} = request.query;
+  let text=movies.find(comments=>comments.id == parseInt(id));
+  return response.send(movies);
+})
 casa.get('/api/movies',(request,response)=>{
   // id, name, creator, and genre.
   const { id, name, creator, genre } = request.query;
