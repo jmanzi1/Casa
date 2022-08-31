@@ -121,6 +121,7 @@ casa.get('/',(request,response)=>{
 casa.put("api/movies/comments", (request,response)=>{
   const{id,comments} = request.query;
   let text=movies.find(comments=>comments.id == parseInt(id));
+  text.comments.push({comment: comments})
   return response.send(movies);
 })
 casa.get('/api/movies',(request,response)=>{
